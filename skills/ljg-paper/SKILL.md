@@ -1,8 +1,8 @@
 ---
 name: ljg-paper
-description: "Paper reader for non-academics. Reads a paper and tells it back as one continuous story — the life of the paper's core proposition (命题), told on a seven-beat spine (主角 / 困境 / 旧路 / 转折 / 解法 / 结局 / 内核): born in a bind on a base-rate ruler, crystallized as a bold conjecture, argued through mechanism and evidence, distilled into a new way of seeing, then walked out of the paper — life-tested and cashed into falsifiable predictions (检验). The job is storytelling that makes the paper land, not academic critique. Use when user shares an arxiv link, paper URL, PDF, or asks to analyze a research paper. Trigger words: '读论文', '讲论文', '把这篇讲给我听', '分析论文', 'paper', or when user shares an academic paper."
+description: "Paper reader for non-academics. Reads a paper and tells it back as one continuous story — the life of the paper's core proposition (命题), told on a seven-beat spine (主角 / 困境 / 旧路 / 转折 / 解法 / 结局 / 内核): born in a bind on a base-rate ruler, crystallized as a bold conjecture, argued through mechanism and evidence, distilled into a new way of seeing, then walked out of the paper — life-tested and cashed into falsifiable predictions (检验). Output opens with a scannable 速读 card (一句话 / 大想法 / 只记三件事) that compresses the whole story three ways for the time-poor reader and the six-months-later self, then tells the full story. The job is storytelling that makes the paper land, not academic critique. Use when user shares an arxiv link, paper URL, PDF, or asks to analyze a research paper. Trigger words: '读论文', '讲论文', '把这篇讲给我听', '分析论文', 'paper', or when user shares an academic paper."
 user_invocable: true
-version: "6.0.0"
+version: "6.1.0"
 ---
 
 # ljg-paper: 把一篇论文当一个故事讲
@@ -25,6 +25,8 @@ version: "6.0.0"
 
 任一件让听众卡住 = 故事讲砸了。**凝练只在 title 上追求；正文该展开就展开**——目标不是短，是让人从听不懂走到能复述。
 
+这五件事，文章分两层给你：顶上一张*速读卡*先给地图（一句话 / 大想法 / 只记三件事），下面的*故事*带你把领土走一遍。速读卡是这五件事压成三句、给两种人看的——还没决定要不要读全文的，和半年后回来只想要核心的。卡片写在最后、放在最前：先读懂全文，才压得出那三句。
+
 ## 故事骨架
 
 把论文讲成故事，脊柱是这七拍。不是七个子标题，是节奏要求：
@@ -39,7 +41,7 @@ version: "6.0.0"
 
 七拍讲完，纸内的故事收了；命题的故事还差最后一程——出门。先过博导的审（站不站得住），再下生活的水（哪儿灵、哪儿破），最后朝未来押一注（它要是对，该看到什么）。这一程不归脊柱管，归「博导审稿」「检验」「启发」三节管。
 
-执行 10 步对应到故事弧上：
+执行 11 步对应到故事弧上：
 
 | 故事拍                | 在执行哪一步           |
 |---------------------|--------------------|
@@ -51,6 +53,8 @@ version: "6.0.0"
 | 故事评审              | 「博导审稿」           |
 | 命题出门（生活测 + 押未来） | 「检验」              |
 | 听众的故事            | 「启发」              |
+
+速读卡不在这张表里——它不是七拍中的一拍，是七拍走完后把整篇压出来的（最后写，最前放）。
 
 **写完默读：这读起来像一个人在跟我讲一个故事，还是十段独立汇报？后者 → 重写。**
 
@@ -87,7 +91,7 @@ version: "6.0.0"
 
 ### 章节命名
 
-Section 名固定：`问题 / 翻译 / 核心概念 / 洞见 / 博导审稿 / 检验 / 启发`。「检验」是 v6 新增，其余沿用——这些名字已沉淀 craft 含义。不重命名为"第一幕/第二幕"。故事弧体现在每段的**写法和衔接**上，不在标签上。禁止英文戏剧术语外露（protagonist / climax / resolution 等），框架词全中文。
+Section 名固定：`速读 / 问题 / 翻译 / 核心概念 / 洞见 / 博导审稿 / 检验 / 启发`。「速读」是 v6.1 新增（一句话 / 大想法 / 只记三件事 三件套），「检验」是 v6 新增，其余沿用——这些名字已沉淀 craft 含义。不重命名为"第一幕/第二幕"。故事弧体现在每段的**写法和衔接**上，不在标签上。禁止英文戏剧术语外露（protagonist / climax / resolution 等），框架词全中文。
 
 ### Denote 文件规范
 
@@ -192,7 +196,7 @@ subtitle:   把"还要写多远"做成一个 value 函数 — Length Value Model
 5. *具体* — 名词看得见，动词有力气。形容词能砍就砍
 6. *开头给理由* — 问题部分的第一句让人想知道答案
 7. *不填充* — 删学术套话（「近年来随着...的发展」「值得注意的是」）。每句干活
-8. *信任读者* — 说一遍够了。不重复结论
+8. *信任读者* — 正文里说一遍够了，不回头重复结论。唯一例外是顶上那张「速读」卡：卡片和正文是两个高度，卡片给方向、正文给细节，两处不用同一句话
 9. *诚实* — 论文有硬伤就说有硬伤。看不懂的部分说看不懂
 10. *6 个月后的我看得懂吗？* — 每个术语首次出现必须落地（"value function = 给定当前状态预测未来累积奖励"），每个公式必须翻译成自然语言，每个引用都要说明对外行的意义。自检：默想"半年后我在 denote 里搜到这篇，30 秒内能回想起核心吗？"——不能 → 重写
 11. *外行优先于凝练* — 该展开就展开，不要为了"短"砍掉读者真正需要的铺垫。凝练的尺度只针对 title；正文该多长就多长，节奏由让人懂的需要决定，不由"短"的洁癖决定
@@ -358,7 +362,19 @@ subtitle:   把"还要写多远"做成一个 value 函数 — Length Value Model
 - *混搭*：论文的某个组件和我已有的东西组合能产生新东西吗？产出什么？
 - *反转*：论文的做法和我的默认假设相反吗？该停下什么、开始什么？
 
-### 9. 收口：过红线 + 故事流自查
+### 9. 速读：回头把整篇压成三句（写在最后，放在最前）
+
+全文写完，回头压一张速读卡，放到最前。顺序是关键——*写在最后，放在最前*：没读懂全文，压不出这三句；正像 title 那句灵魂句也是写完「洞见」回头取骨。
+
+三句一句比一句细，是同一篇论文的三档变焦，不是三个零件——一条引子先把它们拢成一个动作：下面那个长故事，就是把这三句一拍一拍展开。
+
+- *一句话*：平实说完整篇——主角卡在什么困境、作者押了什么、结果怎样。和 title 分工：title 是炼成警句的灵魂句（要 subtitle 兜底），这句是谁读一遍都知道"这论文干了什么"的话。别和 title 用同一句。
+- *大想法*：只能带走一个想法的话，是哪个。它和「洞见」是同一颗核——这里先亮出来给方向（读者带着目的地往下走，更跟得动），「洞见」在故事走完后落地、再给第二个用处。两处别用同一句话。
+- *只记三件事*：半年后忘掉大半，这三条忘不掉——通常是困境为什么值得解、命题靠什么撑住、走出论文带走什么。这是「总目标」五件事压成三件，是重建故事的承重点；不是押注（那在「检验」），不是动手清单（那在「启发」）。
+
+速读是一张*卡片*（能扫、能记），正文是一个*故事*（要顺着读）。两种写法各干各的活，不冲突——卡片是故事压出来的，不是另起炉灶。
+
+### 10. 收口：过红线 + 故事流自查
 
 逐条扫红线。额外检查：
 
@@ -366,6 +382,7 @@ subtitle:   把"还要写多远"做成一个 value 函数 — Length Value Model
 - 变节奏——长短句交替
 - 杀金句——听起来像可引用的，重写
 - 查跳跃——逻辑每步可追
+- 查速读——三句是同一篇的三档变焦吗？大想法和「洞见」两个高度、没撞词？三件事是承重点、没跟「检验」「启发」串味？
 
 **故事流自查（红线 12 的兜底）**：
 
@@ -376,7 +393,7 @@ subtitle:   把"还要写多远"做成一个 value 函数 — Length Value Model
 
 列修改清单确认后生成文件。
 
-### 10. 生成 Org 文件
+### 11. 生成 Org 文件
 
 按 Denote 规范获取时间戳，读 `references/template.md`，写入 `~/Documents/notes/`。
 
@@ -401,6 +418,8 @@ subtitle:   把"还要写多远"做成一个 value 函数 — Length Value Model
 - *启发能动手*：启发部分的落点是"你可以___"，不是"值得思考___"；不与「检验」的注重复
 - *外行能复述五件事*：困境与水位（具体到一个例子）/ 命题（作者敢押的那句话）/ 论证骨架（机制+证据，含反直觉副发现）/ 内核（带得走的视角）/ 检验（生活里哪儿站住哪儿破 + 押了什么注）。任一件让外行卡住 → 失败
 - *title 双过*：凝练自检三问 + 可识别性测试都过
+- *速读三档齐*：一句话（平实可识别，不是 title 灵魂句）/ 大想法（和「洞见」同核、两个高度、不撞词）/ 只记三件事（重建故事的承重点，不是押注、不是清单）三件都在，像同一篇的三档变焦，不是三个零件
+- *速读是压出来的*：三句在正文里都找得到根，写在最后、放在最前，不另起炉灶
 - *翻译节五件齐*：承重类比 / 挂尺数字 / 反直觉副发现 / 论证骨架抽得出来 / 无原始公式
 - *核心概念 ≥ 3*：包含一个"设计选择"概念（不止"组件"）
 - *博导审稿见预设*：方法成熟度一项里指出至少一个未被讨论的根本预设 / 隐忧，并把声称放回领域水位上称过
