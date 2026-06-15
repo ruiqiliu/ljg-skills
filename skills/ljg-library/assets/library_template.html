@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Long+Cang&display=swap" rel="stylesheet">
 <style>
   *{ margin:0; padding:0; box-sizing:border-box; }
   :root{
@@ -15,9 +15,11 @@
     --accent-soft:color-mix(in srgb, {{ACCENT}} 9%, transparent);
     --accent-line:color-mix(in srgb, {{ACCENT}} 28%, transparent);
     --accent-glow:color-mix(in srgb, {{ACCENT}} 35%, transparent);
+    --ink:#241a12;               /* 墨色 — 图解板的线条 / 群众 / 批注（主角是继刚本人墨像 assets/ljg-portrait.png） */
     --sans:'Noto Sans SC',sans-serif;
     --serif:'Noto Serif SC',serif;
     --mono:'JetBrains Mono','Noto Sans SC',monospace;
+    --hand:'Long Cang',cursive;  /* 手写批注体 */
   }
   /* 宽度固定 1080 作版心，高度自适应（fullpage 截图） */
   body{ width:1080px; position:relative; padding:60px 0; font-family:var(--sans);
@@ -63,26 +65,20 @@
   .block-label{ font-family:var(--mono); font-size:14px; letter-spacing:0.32em; color:var(--accent); text-transform:uppercase; margin-bottom:22px; display:flex; align-items:center; gap:12px; font-weight:500; }
   .block-label::before{ content:''; width:24px; height:2px; background:var(--accent); }
 
-  /* BLOCK 1 取景框 — 两端对齐填满 */
-  .frame-text{ font-family:var(--serif); font-size:47px; line-height:1.46; color:var(--txt); font-weight:600; letter-spacing:0.004em;
+  /* BLOCK 1 取景框 — 主句 + 清晰铺陈，两端对齐填满 */
+  .frame-text{ font-family:var(--serif); font-size:40px; line-height:1.42; color:var(--txt); font-weight:600; letter-spacing:0.004em;
     text-align:justify; text-justify:inter-ideograph; text-align-last:left; }
   .frame-text .hl{ color:var(--accent); }
-  .frame-text .echo{ display:block; font-family:var(--serif); font-size:31px; color:var(--txt2); font-weight:500; margin-top:16px; line-height:1.5;
+  .frame-exp{ font-family:var(--serif); font-size:21px; color:var(--txt2); font-weight:500; margin-top:20px; line-height:1.74;
     text-align:justify; text-justify:inter-ideograph; text-align-last:left; }
+  .frame-exp .hl{ color:var(--accent); font-weight:600; }
 
-  /* BLOCK 2 作者核心思想 — 左图右文 */
-  .convex{ display:flex; gap:38px; align-items:center; }
-  .chart{ font-family:var(--mono); font-size:15px; line-height:1.3; white-space:pre; color:var(--txt3); letter-spacing:0.3px; flex-shrink:0; }
-  .chart .cv{ color:var(--accent); font-weight:500; }
-  .chart .ax{ color:#aab2bf; }
-  .chart .lbl{ color:var(--txt2); }
-  .convex-note{ flex:1; border-left:2px solid var(--accent-line); padding-left:28px; }
-  .cn-item{ margin-bottom:20px; }
-  .cn-item:last-child{ margin-bottom:0; }
-  .cn-item .k{ font-family:var(--sans); font-size:21px; color:var(--txt); font-weight:600; }
-  .cn-item .k b{ color:var(--accent); }
-  .cn-item .v{ font-family:var(--sans); font-size:16px; color:var(--txt2); margin-top:4px;
-    text-align:justify; text-justify:inter-ideograph; }
+  /* BLOCK 2 图解 — 继刚把取景框思想演出来的白色插画板（黑墨 on 白，主角是继刚本人墨像） */
+  .plate{ background:#fdfdfb; border:1px solid rgba(31,41,72,0.08); border-radius:16px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 22px -10px rgba(31,41,72,0.16);
+    padding:10px 16px; }
+  .plate svg{ display:block; width:100%; height:auto; }
+  .plate .hand{ font-family:var(--hand); }
 
   .sign{ padding-top:26px; display:flex; align-items:center; gap:10px; }
   .sign .chop{ display:inline-block; width:24px; height:24px; background:var(--accent); border-radius:5px; color:#fff; font-family:var(--serif); font-size:13px; line-height:24px; text-align:center; }
@@ -113,15 +109,13 @@
     <div class="rule"></div>
 
     <div class="block-label">取景框 &#xB7; The Frame</div>
-    <div class="frame-text">{{FRAME}}<span class="echo">{{ECHO}}</span></div>
+    <div class="frame-text">{{FRAME}}</div>
+    <div class="frame-exp">{{EXP}}</div>
 
     <div class="rule"></div>
 
-    <div class="block-label">核心思想 &#xB7; {{CHART_TITLE}}</div>
-    <div class="convex">
-      <div class="chart">{{CHART}}</div>
-      <div class="convex-note">{{NOTE}}</div>
-    </div>
+    <div class="block-label">图解 &#xB7; {{SKETCH_TITLE}}</div>
+    <div class="plate">{{SKETCH_SVG}}</div>
 
     <div class="rule" style="margin:34px 0 0;"></div>
     <div class="sign"><span class="chop">印</span><span>李继刚</span></div>
