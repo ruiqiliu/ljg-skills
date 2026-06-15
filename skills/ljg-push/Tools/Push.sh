@@ -259,11 +259,22 @@ push_branch() {
     return 0
   fi
 
+  # Commit message lists skills that ACTUALLY changed, not the detect list.
+  # On the md branch detect_updates() flags every skill (org source always differs
+  # from the markdown-ized repo); the real git delta below — read before the version
+  # bump, scoped to skills/ — is the truth. Falls back to the detect list only if
+  # nothing under skills/ shows a change.
+  local skill_list
+  skill_list=$(git status --porcelain -- skills/ \
+    | cut -c4- \
+    | sed -E 's/^.* -> //; s/^"//; s/"$//' \
+    | sed -nE 's#^skills/([^/]+)/.*#\1#p' \
+    | sort -u | tr '\n' ' ' | sed 's/ *$//')
+  [ -z "$skill_list" ] && skill_list=$(echo "$skills" | tr '\n' ' ' | sed 's/ *$//')
+
   local new_ver
   new_ver=$(bump_version)
   git add skills/ .claude-plugin/
-  local skill_list
-  skill_list=$(echo "$skills" | tr '\n' ' ')
   git commit -m "${prefix}: sync ljg-* skills [$skill_list] (v$new_ver)" --quiet
   git push origin "$branch" --quiet
   ok "$branch @ v$new_ver pushed"
