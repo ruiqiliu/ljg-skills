@@ -104,5 +104,5 @@ git clone -b md https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg
 
 | 工作流 | 技能链 | 说明 |
 |--------|--------|------|
-| **ljg-paper-flow** | ljg-paper → ljg-card -c | 读论文 + 做漫画卡片一气呵成 |
+| **ljg-paper-flow** | ljg-paper → ljg-library | 读论文 + 铸取景框借书卡一气呵成 |
 | **ljg-word-flow** | ljg-word → ljg-card -i | 单词深度分析 + 信息图卡片一气呵成 |
