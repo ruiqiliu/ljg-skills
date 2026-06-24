@@ -73,12 +73,10 @@
     text-align:justify; text-justify:inter-ideograph; text-align-last:left; }
   .frame-exp .hl{ color:var(--accent); font-weight:600; }
 
-  /* BLOCK 2 图解 — 精确呈现意向画面的白色插画板（黑墨 on 白；继刚墨像 assets/ljg-portrait.png 可选，听画面调度） */
-  .plate{ background:#fdfdfb; border:1px solid rgba(31,41,72,0.08); border-radius:16px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 22px -10px rgba(31,41,72,0.16);
-    padding:10px 16px; }
-  .plate svg{ display:block; width:100%; height:auto; }
-  .plate .hand{ font-family:var(--hand); }
+  /* BLOCK 2 图解 — 嵌入生成插画（mold -a 动森 / -c cyber，继刚作主角）；图自带背景，板只裱框 */
+  .plate{ border:1px solid rgba(31,41,72,0.10); border-radius:16px; overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.5), 0 6px 22px -10px rgba(31,41,72,0.22); }
+  .plate img.sketch{ display:block; width:100%; height:auto; }
 
   .sign{ padding-top:26px; display:flex; align-items:center; gap:10px; }
   .sign .chop{ display:inline-block; width:24px; height:24px; background:var(--accent); border-radius:5px; color:#fff; font-family:var(--serif); font-size:13px; line-height:24px; text-align:center; }
@@ -115,7 +113,7 @@
     <div class="rule"></div>
 
     <div class="block-label">图解 &#xB7; {{SKETCH_TITLE}}</div>
-    <div class="plate">{{SKETCH_SVG}}</div>
+    <div class="plate"><img class="sketch" src="{{SKETCH_IMG}}" alt="图解"></div>
 
     <div class="rule" style="margin:34px 0 0;"></div>
     <div class="sign"><span class="chop">印</span><span>李继刚</span></div>

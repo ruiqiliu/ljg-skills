@@ -15,13 +15,9 @@
     --accent-soft:color-mix(in srgb, {{ACCENT}} 9%, transparent);
     --accent-line:color-mix(in srgb, {{ACCENT}} 28%, transparent);
     --accent-glow:color-mix(in srgb, {{ACCENT}} 35%, transparent);
-    --ink:#2a2622;        /* cartographic 地图板墨色 */
-    --block:#c1392b;      /* 🔴 瓶颈语义色（固定） */
-    --gold:#b8860b;       /* 🟡 价值捕获语义色（固定） */
     --sans:'Noto Sans SC',sans-serif;
     --serif:'Noto Serif SC',serif;
     --mono:'JetBrains Mono','Noto Sans SC',monospace;
-    --hand:'Long Cang',cursive;
   }
   body{ width:1080px; position:relative; padding:60px 0; font-family:var(--sans);
     background:linear-gradient(155deg, #eef1f7 0%, #e6ebf3 50%, #e3e8f2 100%); }
@@ -62,15 +58,10 @@
     text-align:justify; text-justify:inter-ideograph; text-align-last:left; }
   .thesis .hl{ color:var(--accent); }
 
-  /* cartographic 地图板 */
-  .mapplate{ background:#fbfaf6; border:1px solid rgba(42,38,34,0.10); border-radius:16px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 22px -10px rgba(31,41,72,0.16);
-    background-image:linear-gradient(rgba(42,38,34,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(42,38,34,0.055) 1px, transparent 1px);
-    background-size:34px 34px;
-    padding:14px 18px; }
-  .mapplate svg{ display:block; width:100%; height:auto; }
-  .mapplate .hand{ font-family:var(--hand); }
-  .mapplate .mono{ font-family:var(--mono); }
+  /* 生态地形图：嵌入 AI 生成插画（动森 -a / cyber -c），图自带背景、板裱框 */
+  .mapplate{ border:1px solid rgba(31,41,72,0.10); border-radius:16px; overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.5), 0 6px 22px -10px rgba(31,41,72,0.22); }
+  .mapplate img.mapimg{ display:block; width:100%; height:auto; }
   .map-caption{ font-family:var(--serif); font-size:18px; color:var(--txt2); font-weight:500; margin-top:16px; line-height:1.6;
     text-align:justify; text-justify:inter-ideograph; text-align-last:left; }
   .map-caption .hl{ color:var(--accent); font-weight:600; }
@@ -101,7 +92,7 @@
   <div class="grain"></div>
 
   <div class="card">
-    <div class="kicker">产业地图 &#xB7; Industry Map</div>
+    <div class="kicker">生态地形图 &#xB7; Industry Terrain</div>
     <div class="title">{{INDUSTRY}}</div>
     <div class="en">{{EN}}</div>
     <div class="tags">{{TAGS}}</div>
@@ -113,8 +104,8 @@
 
     <div class="rule"></div>
 
-    <div class="block-label">地图 &#xB7; The Map</div>
-    <div class="mapplate">{{MAP_SVG}}</div>
+    <div class="block-label">生态地形 &#xB7; The Terrain</div>
+    <div class="mapplate"><img class="mapimg" src="{{MAP_IMG}}" alt="生态地形图"></div>
     <div class="map-caption">{{MAP_CAPTION}}</div>
 
     <div class="rule"></div>
