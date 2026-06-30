@@ -202,7 +202,7 @@ f(x) 有两半：透过这副框照出的画面，加作者落下的那句结论
 
 1. 取时间戳：`date +%Y%m%dT%H%M%S` 和 `date "+%Y-%m-%d %a %H:%M"`。
 2. 写入 `~/Documents/notes/{时间戳}--拆书-{书名}__book.org`。
-3. markdown 格式（标题用 `*`，加粗用 `*bold*` 单星号，禁 markdown 双星号）。
+3. 输出 org 文件：标题用 `*`，加粗用 `*bold*`（单星号），不用 markdown 的 `**`。
 4. 文件头（不变）：
 
 ```
