@@ -173,5 +173,5 @@ user_invocable: true
 ## 输出
 
 1. 获取时间戳：`date +%Y%m%dT%H%M%S` 和 `date "+%Y-%m-%d %a %H:%M"`
-2. 写入 `~/Documents/notes/{时间戳}--{领域}的约束__constraint.org`，org frontmatter 见 `references/template.md`
+2. 写入 `~/Documents/notes/{时间戳}--{领域}的约束__constraint.md`，org frontmatter 见 `references/template.md`
 3. 报告文件路径给用户
