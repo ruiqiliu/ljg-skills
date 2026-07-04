@@ -179,6 +179,7 @@ mdize_skill() {
       -e 's/__rank\.org/__rank.md/g' \
       -e 's/__constraint\.org/__constraint.md/g' \
       -e 's/__plain\.org/__plain.md/g' \
+      -e 's/__blind\.org/__blind.md/g' \
       -e 's/template\.org/template.md/g' \
       -e 's/org-mode/markdown/g' \
       -e 's/Org-mode/Markdown/g' \
