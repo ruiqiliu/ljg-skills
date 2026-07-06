@@ -76,6 +76,7 @@ git clone -b md https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg
 
 | 技能 | 说明 |
 |------|------|
+| **ljg-blind** | 盲区扫描 — 读取指定日期的 AI 对话，找出结构性思维盲区，并用微信读书章节精准补上 |
 | **ljg-card** | 内容铸卡 — 将内容转为 PNG 视觉卡片（长图 `-l`、信息图 `-i`、多卡 `-m`、视觉笔记 `-v`、漫画 `-c`、白板 `-w`、大字 `-b`） |
 | **ljg-learn** | 概念解剖 — 从八个方向切开一个概念（历史、辩证、现象、语言、形式、存在、美感、元反思），压成一句顿悟 |
 | **ljg-paper** | 论文阅读 — 为非学术人士提取论文核心想法，重理解不重批判 |
@@ -98,6 +99,7 @@ git clone -b md https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg
 | **ljg-skill-map** | 技能地图 — 扫描所有已安装技能，渲染可视化总览 |
 | **ljg-present** | 演讲铸造器 — 默认高桥流（一页一关键词、奶白底墨字）；`-s` 标语流（VACAT/BIG STUDIOS 风：黑红双色块、ultra-bold、完整断言句撑屏）|
 | **ljg-push** | 推送引擎 — 把本地 `~/.claude/skills/ljg-*` 一键同步到 github repo（master + md 双分支）|
+| **ljg-x-download** | X/Twitter 媒体下载 — 从推文链接下载图片或视频到 `~/Downloads` |
 
 
 ## 工作流
