@@ -11,7 +11,7 @@ set -euo pipefail
 
 # === Configuration (HARDCODED) ===
 SKILLS_REPO="$HOME/code/ljg-skills"
-SKILLS_LOCAL="$HOME/.claude/skills"
+SKILLS_LOCAL="$HOME/.codex/skills"
 REPO_URL="git@github.com:lijigang/ljg-skills.git"
 
 # === Args ===

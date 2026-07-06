@@ -1,18 +1,18 @@
 ---
 name: ljg-push
-description: 把 ~/.claude/skills/ljg-* 里所有更新过的 skills 同步到 github repo (ljg-skills)，先推 master 分支（markdown 输出风格），再切 md 分支（markdown 输出风格）做基础 markdown 化后推。Use when user says '/ljg-push', 'push skills', '推送 skills', '同步 skills', 'sync ljg', or whenever ljg-* skills get updated and need shipping. NOT FOR pushing non-ljg skills or arbitrary git repos.
+description: 把 ~/.codex/skills/ljg-* 里所有更新过的 skills 同步到 github repo (ljg-skills)，先推 master 分支（markdown 输出风格），再切 md 分支（markdown 输出风格）做基础 markdown 化后推。Use when user says '/ljg-push', 'push skills', '推送 skills', '同步 skills', 'sync ljg', or whenever ljg-* skills get updated and need shipping. NOT FOR pushing non-ljg skills or arbitrary git repos.
 user_invocable: true
 ---
 
 # ljg-push: 推送 ljg-* skills
 
-把本地 `~/.claude/skills/ljg-*` 里改过的 skills，一键同步到 github repo，覆盖 master 和 md 两个分支。
+把本地 `~/.codex/skills/ljg-*` 里改过的 skills，一键同步到 github repo，覆盖 master 和 md 两个分支。
 
 ## 仓库路径（硬编码）
 
 ```
 SKILLS_REPO="$HOME/code/ljg-skills"     # 本地工作 repo
-SKILLS_LOCAL="$HOME/.claude/skills"      # 本地 skill 源
+SKILLS_LOCAL="$HOME/.codex/skills"      # 本地 skill 源
 REPO_URL="git@github.com:lijigang/ljg-skills.git"
 ```
 
@@ -25,7 +25,7 @@ REPO_URL="git@github.com:lijigang/ljg-skills.git"
 | `master`（默认） | markdown | `.org` | `*bold*` | `#+title:` 等 |
 | `md` | markdown | `.md` | `**bold**` | YAML frontmatter |
 
-`~/.claude/skills/` 里的 skill 是 *master 风格*（源版本）。md 分支的差异由脚本自动转换 + 必要时手工补。
+`~/.codex/skills/` 里的 skill 是 *master 风格*（源版本）。md 分支的差异由脚本自动转换 + 必要时手工补。
 
 ## 工作流
 
@@ -35,7 +35,7 @@ REPO_URL="git@github.com:lijigang/ljg-skills.git"
 
 每次 push 前，脚本强制做一件事：*把 README 跟 local skills 对一遍*。
 
-- 列出 `~/.claude/skills/ljg-*` 全部 skill 名
+- 列出 `~/.codex/skills/ljg-*` 全部 skill 名
 - grep `$SKILLS_REPO/README.md` 里出现的 `ljg-xxx`
 - 找出 local 有但 README 没有的——*几乎肯定意味着 README 漏更新*
 - 命中 → push 中止，报告差异
@@ -83,7 +83,7 @@ curl -s -X POST http://localhost:31337/notify \
 
 ```
 User: /ljg-push
-→ 检测 ~/.claude/skills/ljg-* 中跟 repo 有差异的 skills
+→ 检测 ~/.codex/skills/ljg-* 中跟 repo 有差异的 skills
 → master: rsync + bump version + commit + push
 → md: rsync + mdize + bump version + commit + push
 → 报告：哪些 skills 推了，新版本号，剩余手工差异
