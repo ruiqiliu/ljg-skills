@@ -1,8 +1,8 @@
 # ljg-skills-md
 
-LJG's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 自定义技能集。
+LJG 的 Codex 自定义技能集。
 
-此修改版本全部为.MD格式输出（源skill全部为.org格式）
+此分支的技能默认输出 Markdown；源分支 `master` 默认输出 Org-mode。
 
 ## 输出格式
 
@@ -22,36 +22,38 @@ LJG's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 自定义技
 
 ## 安装
 
-使用 [skills CLI](https://github.com/vercel-labs/skills)（基于 `npx`）一行安装：
+使用 [skills CLI](https://github.com/vercel-labs/skills) 安装到 Codex：
 
 ```bash
 # 安装全部技能（全局，org-mode 格式）
-npx skills add lijigang/ljg-skills -g --all
+bunx skills add lijigang/ljg-skills -g -a codex --skill '*' -y
 
 # 安装全部技能（Markdown 格式）
-npx skills add lijigang/ljg-skills#md -g --all
+bunx skills add lijigang/ljg-skills#md -g -a codex --skill '*' -y
 
 # 安装单个技能（org-mode）
-npx skills add lijigang/ljg-skills -g --skill ljg-card
+bunx skills add lijigang/ljg-skills -g -a codex --skill ljg-card -y
 
 # 安装单个技能（Markdown）
-npx skills add lijigang/ljg-skills#md -g --skill ljg-card
+bunx skills add lijigang/ljg-skills#md -g -a codex --skill ljg-card -y
 
 # 安装多个指定技能
-npx skills add lijigang/ljg-skills -g --skill ljg-card --skill ljg-learn
+bunx skills add lijigang/ljg-skills -g -a codex --skill ljg-card --skill ljg-learn -y
 
 # 查看仓库中有哪些技能
-npx skills add lijigang/ljg-skills -l
+bunx skills add lijigang/ljg-skills -l
 ```
 
 **参数说明：**
 
 | 参数 | 作用 |
 |------|------|
-| `-g` | 全局安装到 `~/.claude/skills/`（推荐）。不加则装到当前项目 `.claude/skills/` |
+| `-a codex` | 只安装给 Codex |
+| `-g` | 全局安装到 `~/.codex/skills/`（推荐）；不加则安装到项目级 `.agents/skills/` |
 | `--skill <name>` | 指定安装某个技能，可重复使用 |
-| `--all` | 安装仓库内全部技能 |
+| `--skill '*'` | 安装仓库内全部技能 |
 | `#md` | 从 `md` branch 安装 Markdown 格式版本 |
+| `-y` | 跳过交互确认 |
 | `-l` | 仅列出可用技能，不安装 |
 
 ### ljg-card 依赖
@@ -59,17 +61,23 @@ npx skills add lijigang/ljg-skills -l
 `ljg-card` 依赖 Playwright 截图，安装后需额外执行：
 
 ```bash
-cd ~/.claude/skills/ljg-card && npm install && npx playwright install chromium
+cd ~/.codex/skills/ljg-card && bun install && bunx playwright install chromium
 ```
 
 ### 替代方式：git clone
 
-```bash
-# org-mode 版本
-git clone https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg-skills
+仓库根目录不是技能目录，clone 后还要把 `skills/` 同步到 Codex。下面两种格式二选一：
 
-# Markdown 版本
-git clone -b md https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg-skills
+```bash
+# org-mode 版本（master）
+git clone --branch master --depth 1 https://github.com/lijigang/ljg-skills.git "$HOME/code/ljg-skills"
+mkdir -p "$HOME/.codex/skills"
+rsync -a "$HOME/code/ljg-skills/skills/" "$HOME/.codex/skills/"
+
+# Markdown 版本（md）
+git clone --branch md --depth 1 https://github.com/lijigang/ljg-skills.git "$HOME/code/ljg-skills-md"
+mkdir -p "$HOME/.codex/skills"
+rsync -a "$HOME/code/ljg-skills-md/skills/" "$HOME/.codex/skills/"
 ```
 
 ## 技能
@@ -95,4 +103,4 @@ git clone -b md https://github.com/lijigang/ljg-skills.git ~/.claude/plugins/ljg
 | **ljg-relationship** | 关系分析 — 五层结构诊断 + 精神分析，通过对话引导帮用户"看见"关系真实结构 |
 | **ljg-roundtable** | 圆桌讨论 — 一个议题一场圆桌：真实人物逐轮交锋，每轮收一张 ASCII 结构图，散场全文存档 |
 | **ljg-present** | 演讲铸造器 — 默认高桥流（一页一关键词、奶白底墨字）；`-s` 标语流（VACAT/BIG STUDIOS 风：黑红双色块、ultra-bold、完整断言句撑屏）|
-| **ljg-push** | 推送引擎 — 把本地 `~/.claude/skills/ljg-*` 一键同步到 github repo（master + md 双分支）|
+| **ljg-push** | 推送引擎 — 把本地 `~/.codex/skills/ljg-*` 一键同步到 github repo（master + md 双分支）|
