@@ -1,6 +1,9 @@
 # ljg-skills-md
 
+
 LJG 的 Codex 自定义技能集。
+
+[original repo for LJG](https://github.com/lijigang/ljg-skills)
 
 此分支的技能默认输出 Markdown；源分支 `master` 默认输出 Org-mode。
 
