@@ -28,3 +28,6 @@ __pycache__/
 
 # 本地插件配置
 .claude/*.local.md
+
+*/skills-lock.json
+
